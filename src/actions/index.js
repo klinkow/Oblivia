@@ -1,18 +1,11 @@
-
+import { fullGameState } from '../index'
 
 
 export function selectChoice(choice, gameState) {
   return function(dispatch) {
     var newGameState = (gameState + 1);
 
-
-
-
-
-    // var player1score;
-    // var player2score;
-    // var choice;
-
+    // TODO: use fullGameState to write logic for choice selected and others
     // if (choice === ) {
     //   if (player === 1) {
     //
@@ -21,7 +14,6 @@ export function selectChoice(choice, gameState) {
     //   }
     // }
 
-    // console.log(createStoreWithMiddleware);
 
     dispatch({
       type: 'CHOICE_SELECTED',

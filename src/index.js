@@ -9,10 +9,13 @@ import reducers from './reducers';
 
 let store = createStore(reducers, applyMiddleware(thunk))
 
+// TODO: Either above: game state (full) to second argument? (make applyMiddleware third argument)
+// OR - below: set fullGameState to store.getState() so that it initializes with first game state
 
-// TODO: Make this function create an export variable containing the current state. Then import in the actions index.
+export var fullGameState
+
 const stateLogger = store.subscribe(() =>
-  console.log(store.getState())
+  fullGameState = store.getState()
 )
 
 
