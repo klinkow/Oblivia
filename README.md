@@ -1,18 +1,18 @@
 # Oblivia
 
-## Description
+### Description
 
-2-player trivia game that intelligently creates questions using news headlines and other internet sources [Play Game](oblivia.herokuapp.com)
+2-player trivia game that intelligently creates questions using news headlines and other internet sources.
 
-#### By _*Bill Klinkow*_
+#### By *Bill Klinkow*
 
 ### Technologies Used
 
-React, Redux, Node
+React, Redux, Node.
 
 ### Installation
 
-Run the following from the command line
+Run the following from the command line:
 
 ```
 > git clone https://github.com/klinkow/Oblivia.git

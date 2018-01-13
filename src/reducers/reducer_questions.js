@@ -1,52 +1,37 @@
-export default function() {
-  return [
-    {
-      question: "1. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    },
-    {
-      question: "2. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    },
-    {
-      question: "3. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    },
-    {
-      question: "4. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    },
-    {
-      question: "5. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    },
-    {
-      question: "6. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    },
-    {
-      question: "7. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    },
-    {
-      question: "8. The following headline comes from today's New York Times. _________ decides to invade North Korea",
-      questionValue: 50,
-      correctAnswer: "Mike Pence",
-      answers: ["Hilary Clinton", "Mike Pence", "Rob Haywood", "Donald Trump"]
-    }
-  ]
+export default function(state = null, action) {
+  switch(action.gameState) {
+  case 1:
+    return (
+      "1. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  case 2:
+    return (
+      "2. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  case 3:
+    return (
+      "3. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  case 4:
+    return (
+      "4. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  case 5:
+    return (
+      "5. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  case 6:
+    return (
+      "6. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  case 7:
+    return (
+      "7. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  case 8:
+    return (
+      "8. The following headline comes from today's New York Times. _________ decides to invade North Korea"
+    )
+  }
+  return state
 }

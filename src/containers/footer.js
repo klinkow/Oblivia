@@ -6,12 +6,13 @@ import FormInput from '../components/form-input';
 
 class Footer extends Component {
 
+
   renderChoices() {
-    return this.props.questions[0]["answers"].map((choice) => {
+    return this.props.answers.map((choice) => {
       return (
         <div
         key={choice}
-        onClick={() => this.props.selectChoice(choice)}>
+        onClick={() => this.props.selectChoice(choice, this.props.gameState)}>
           {choice}
         </div>
       )
@@ -19,6 +20,9 @@ class Footer extends Component {
   }
 
   render() {
+    if (!this.props.answers) {
+      return <div>Need to start a new game</div>;
+    }
     return (
       <div>
         {this.renderChoices()}
@@ -29,11 +33,11 @@ class Footer extends Component {
 
 function mapStateToProps(state) {
   return {
-    questionNumber: state.currentQuestion,
-    questions: state.questions
+    answers: state.answers
   };
 }
 
+// TODO: try ES6 syntax for selectChoice
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({ selectChoice: selectChoice }, dispatch)
 }

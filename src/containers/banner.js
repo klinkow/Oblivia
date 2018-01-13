@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 class Banner extends Component {
 
   render() {
+    if (!this.props.question) {
+      return <div>Need to start a new game</div>
+    }
     return (
       <div>
-        <p>{this.props.questionNumber}</p>
+        <p>{this.props.question}</p>
       </div>
     );
 
@@ -15,8 +18,7 @@ class Banner extends Component {
 
 function mapStateToProps(state) {
   return {
-    questionNumber: state.currentQuestion,
-    questions: state.questions
+    question: state.question
   };
 }
 
