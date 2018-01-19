@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { selectChoice } from '../actions/index';
+import { selectChoice, startGame } from '../actions/index';
 import FormInput from '../components/form-input';
 
 class Footer extends Component {
@@ -12,7 +12,7 @@ class Footer extends Component {
       return (
         <div
         key={choice}
-        onClick={() => this.props.selectChoice(choice, this.props.gameState)}>
+        onClick={() => this.props.selectChoice(choice)}>
           {choice}
         </div>
       )
@@ -20,8 +20,16 @@ class Footer extends Component {
   }
 
   render() {
-    if (!this.props.answers) {
-      return <div>Need to start a new game</div>;
+    if (this.props.gameState === 1) {
+      return (
+        <div onClick={() => this.props.startGame()}>
+          New Game
+        </div>
+      )
+    } else if ((this.props.gameState === 2) || (this.props.gameState === 3)) {
+      return (
+        <FormInput currentPlayer={this.props.currentPlayer} />
+      )
     }
     return (
       <div>
@@ -33,13 +41,15 @@ class Footer extends Component {
 
 function mapStateToProps(state) {
   return {
-    answers: state.answers
+    answers: state.answers,
+    gameState: state.gameState,
+    currentPlayer: state.currentPlayer
   };
 }
 
-// TODO: try ES6 syntax for selectChoice
+// TODO: try ES6 syntax for selectChoice and startGame
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectChoice: selectChoice }, dispatch)
+  return bindActionCreators({ selectChoice: selectChoice, startGame: startGame }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

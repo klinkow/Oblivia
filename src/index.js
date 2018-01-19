@@ -9,10 +9,7 @@ import reducers from './reducers';
 
 let store = createStore(reducers, applyMiddleware(thunk))
 
-// TODO: Either above: game state (full) to second argument? (make applyMiddleware third argument)
-// OR - below: set fullGameState to store.getState() so that it initializes with first game state
-
-export var fullGameState
+export var fullGameState = store.getState()
 
 const stateLogger = store.subscribe(() =>
   fullGameState = store.getState()
