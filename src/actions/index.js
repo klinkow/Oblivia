@@ -2,15 +2,19 @@ import { fullGameState } from '../index'
 
 export const UPDATE_CURRENT_PLAYER = 'UPDATE_CURRENT_PLAYER';
 export const UPDATE_NAME = 'UPDATE_NAME';
+export const UPDATE_GAME_STATE = 'UPDATE_GAME_STATE';
+export const UPDATE_PLAYER1_SCORE = 'UPDATE_PLAYER1_SCORE';
+export const UPDATE_PLAYER2_SCORE = 'UPDATE_PLAYER2_SCORE';
 
-// TODO: change update game state reducer to include logic to add + 1, then refactor the three instances below
+function advanceGameState(dispatch) {
+  dispatch({
+    type: UPDATE_GAME_STATE
+  })
+}
+
 export function startGame() {
   return function(dispatch) {
-    var newGameState = fullGameState.gameState + 1;
-    dispatch({
-      type: 'UPDATE_GAME_STATE',
-      gameState: newGameState
-    })
+    advanceGameState(dispatch);
   }
 }
 
@@ -24,11 +28,7 @@ export function submitName(name, currentPlayer) {
     dispatch({
       type: UPDATE_CURRENT_PLAYER
     })
-    var newGameState = fullGameState.gameState + 1;
-    dispatch({
-      type: 'UPDATE_GAME_STATE',
-      gameState: newGameState
-    })
+    advanceGameState(dispatch);
   }
 }
 
@@ -36,8 +36,9 @@ export function selectChoice(choice) {
   return function(dispatch) {
     var newGameState = fullGameState.gameState + 1;
     var correctAnswer = fullGameState.correctAnswer;
-    var playerScores = fullGameState.scores;
     var currentPlayer = fullGameState.currentPlayer;
+    console.log(fullGameState);
+    console.log('Choice: ', choice);
 
     dispatch({
       type: 'UPDATE_BANNER',
@@ -52,26 +53,22 @@ export function selectChoice(choice) {
       gameState: newGameState
     })
     if (choice === correctAnswer) {
+      console.log('choice === correctAnswer')
       if (currentPlayer === 1) {
-        playerScores[0] += 30;
+        console.log('player = 1')
         dispatch({
-          type: 'UPDATE_SCORE',
-          payload: playerScores
+          type: UPDATE_PLAYER1_SCORE
         })
       } else {
-        playerScores[1] += 30;
+        console.log('player = 2')
         dispatch({
-          type: 'UPDATE_SCORE',
-          payload: playerScores
+          type: UPDATE_PLAYER2_SCORE
         })
       }
     }
     dispatch({
       type: UPDATE_CURRENT_PLAYER
     })
-    dispatch({
-      type: 'UPDATE_GAME_STATE',
-      gameState: newGameState
-    })
+    advanceGameState(dispatch);
   }
 }

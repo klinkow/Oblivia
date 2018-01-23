@@ -5,7 +5,8 @@ import AnswersReducer from './reducer_answers';
 import CorrectAnswersReducer from './reducer_correct_answers';
 import PlayersReducer from './reducer_players';
 import CurrentPlayerReducer from './reducer_current_player';
-import ScoresReducer from './reducer_scores'
+import Player1ScoreReducer from './reducer_player1_score';
+import Player2ScoreReducer from './reducer_player2_score';
 
 const rootReducer = combineReducers({
   players: PlayersReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   correctAnswer: CorrectAnswersReducer,
   gameState: UpdateGameStateReducer,
   currentPlayer: CurrentPlayerReducer,
-  scores: ScoresReducer
+  player1Score: Player1ScoreReducer,
+  player2Score: Player2ScoreReducer
 });
 
 export default rootReducer;

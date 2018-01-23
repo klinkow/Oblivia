@@ -2,66 +2,66 @@ export default function(state = null, action) {
   switch(action.type) {
   case 'UPDATE_ANSWERS':
     switch(action.gameState) {
-    case 1:
+    case 4:
       return [
         "1Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
         "Donald Trump"
       ]
-    case 2:
+    case 5:
       return [
         "2Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
         "Donald Trump"
       ]
-    case 3:
+    case 6:
       return [
         "3Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
         "Donald Trump"
       ]
-    case 4:
+    case 7:
       return [
         "4Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
         "Donald Trump"
       ]
-    case 5:
+    case 8:
       return [
         "5Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
         "Donald Trump"
       ]
-    case 6:
+    case 9:
       return [
         "6Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
         "Donald Trump"
       ]
-    case 7:
+    case 10:
       return [
         "7Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
         "Donald Trump"
       ]
-    case 8:
+    case 11:
       return [
         "8Hilary Clinton",
         "Mike Pence",
         "Rob Haywood",
-        "Donald Trump"
+        "Dnald Trump"
       ]
     }
   }
   return [
-    "8Hilary Clinton",
+    "Defult Hilary Clinton",
     "Mike Pence",
     "Rob Haywood",
     "Donald Trump"

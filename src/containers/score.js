@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 class Score extends Component {
 
   renderPlayers() {
+    var scores = [this.props.player1Score, this.props.player2Score]
     var counter = -1;
     return this.props.players.map((player) => {
       counter += 1;
       return (
         <li key={player}>
-          {player}: {this.props.scores[counter]}
+          {player}: {scores[counter]}
         </li>
       )
     });
@@ -31,7 +32,8 @@ class Score extends Component {
 function mapStateToProps(state) {
   return {
     players: state.players,
-    scores: state.scores
+    player1Score: state.player1Score,
+    player2Score: state.player2Score
   };
 }
 
