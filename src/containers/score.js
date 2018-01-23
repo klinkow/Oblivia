@@ -9,7 +9,7 @@ class Score extends Component {
     return this.props.players.map((player) => {
       counter += 1;
       return (
-        <li key={player}>
+        <li key={counter}>
           {player}: {scores[counter]}
         </li>
       )
@@ -18,7 +18,7 @@ class Score extends Component {
 
   render() {
     if (this.props.players.length < 2) {
-      return (<div>Nothing</div>)
+      return (<div> </div>)
     } else {
     return (
       <ul>

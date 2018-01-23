@@ -5,6 +5,8 @@ export const UPDATE_NAME = 'UPDATE_NAME';
 export const UPDATE_GAME_STATE = 'UPDATE_GAME_STATE';
 export const UPDATE_PLAYER1_SCORE = 'UPDATE_PLAYER1_SCORE';
 export const UPDATE_PLAYER2_SCORE = 'UPDATE_PLAYER2_SCORE';
+export const UPDATE_CURRENT_WINNER = 'UPDATE_CURRENT_WINNER';
+// TODO: refactor the rest of the types to constants above
 
 function advanceGameState(dispatch) {
   dispatch({
@@ -20,6 +22,7 @@ export function startGame() {
 
 export function submitName(name, currentPlayer) {
   return function(dispatch) {
+    var newGameState = fullGameState.gameState + 1;
     dispatch({
       type: UPDATE_NAME,
       currentPlayer: currentPlayer,
@@ -28,17 +31,28 @@ export function submitName(name, currentPlayer) {
     dispatch({
       type: UPDATE_CURRENT_PLAYER
     })
+    dispatch({
+      type: 'UPDATE_BANNER',
+      gameState: newGameState
+    })
+    dispatch({
+      type: 'UPDATE_ANSWERS',
+      gameState: newGameState
+    })
     advanceGameState(dispatch);
   }
 }
 
+// TODO refactor update winner if-tree to a single callback
 export function selectChoice(choice) {
   return function(dispatch) {
     var newGameState = fullGameState.gameState + 1;
     var correctAnswer = fullGameState.correctAnswer;
     var currentPlayer = fullGameState.currentPlayer;
-    console.log(fullGameState);
-    console.log('Choice: ', choice);
+    var player1Score = fullGameState.player1Score;
+    var player2Score = fullGameState.player2Score;
+
+    console.log('newGameState: ', newGameState);
 
     dispatch({
       type: 'UPDATE_BANNER',
@@ -53,17 +67,48 @@ export function selectChoice(choice) {
       gameState: newGameState
     })
     if (choice === correctAnswer) {
-      console.log('choice === correctAnswer')
       if (currentPlayer === 1) {
-        console.log('player = 1')
         dispatch({
           type: UPDATE_PLAYER1_SCORE
         })
+        player1Score += 30;
+        if (player1Score > player2Score) {
+          dispatch({
+            type: UPDATE_CURRENT_WINNER,
+            payload: fullGameState.players[0]
+          })
+        } else if (player1Score < player2Score) {
+          dispatch({
+            type: UPDATE_CURRENT_WINNER,
+            payload: fullGameState.players[1]
+          })
+        } else {
+          dispatch({
+            type: UPDATE_CURRENT_WINNER,
+            payload: 'tie game'
+          })
+        }
       } else {
-        console.log('player = 2')
         dispatch({
           type: UPDATE_PLAYER2_SCORE
         })
+        player2Score += 30;
+        if (player1Score > player2Score) {
+          dispatch({
+            type: UPDATE_CURRENT_WINNER,
+            payload: fullGameState.players[0]
+          })
+        } else if (player1Score < player2Score) {
+          dispatch({
+            type: UPDATE_CURRENT_WINNER,
+            payload: fullGameState.players[1]
+          })
+        } else {
+          dispatch({
+            type: UPDATE_CURRENT_WINNER,
+            payload: 'tie game'
+          })
+        }
       }
     }
     dispatch({

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Banner extends Component {
-
   render() {
     if (this.props.gameState === 1 ) {
       return (
@@ -23,7 +22,23 @@ class Banner extends Component {
           <h3>Player 2, enter your name:</h3>
         </div>
       );
-    } else {
+    } else if (this.props.gameState === 12) {
+      if (this.props.currentWinner === 'tie game') {
+        return (
+          <div>
+            <h3>And the winner is.... a tie! Everyone is a winner! Enjoy your prize.</h3>
+            <p>Come back tomorrow and play again!</p>
+          </div>
+        )
+      } else {
+        return (
+          <div>
+            <h3>Congratulations {this.props.currentWinner}, you won! Enjoy your prize</h3>
+            <p>Come back tomorrow and play again!</p>
+          </div>
+        )
+      }
+    }  else {
       return (
         <div>
           <p>{this.props.question}</p>
@@ -36,7 +51,8 @@ class Banner extends Component {
 function mapStateToProps(state) {
   return {
     question: state.question,
-    gameState: state.gameState
+    gameState: state.gameState,
+    currentWinner: state.currentWinner
   };
 }
 

@@ -7,6 +7,7 @@ import PlayersReducer from './reducer_players';
 import CurrentPlayerReducer from './reducer_current_player';
 import Player1ScoreReducer from './reducer_player1_score';
 import Player2ScoreReducer from './reducer_player2_score';
+import CurrentWinnerReducer from './reducer_current_winner'
 
 const rootReducer = combineReducers({
   players: PlayersReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   correctAnswer: CorrectAnswersReducer,
   gameState: UpdateGameStateReducer,
   currentPlayer: CurrentPlayerReducer,
+  currentWinner: CurrentWinnerReducer,
   player1Score: Player1ScoreReducer,
   player2Score: Player2ScoreReducer
 });
