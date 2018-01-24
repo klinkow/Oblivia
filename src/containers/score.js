@@ -9,21 +9,21 @@ class Score extends Component {
     return this.props.players.map((player) => {
       counter += 1;
       return (
-        <li key={counter}>
+        <p key={counter} className={"score".concat(counter)}>
           {player}: {scores[counter]}
-        </li>
+        </p>
       )
     });
   }
 
   render() {
     if (this.props.players.length < 2) {
-      return (<div> </div>)
+      return (<div className="header"></div>)
     } else {
     return (
-      <ul>
+      <div className="header">
         {this.renderPlayers()}
-      </ul>
+      </div>
     )
     }
   }

@@ -6,15 +6,28 @@ import FormInput from '../components/form-input';
 
 class Footer extends Component {
 
+  fadeOut() {
+    var elements = Array.from(document.getElementsByClassName("fade_out"));
+    elements.map((element) => element.classList.add("fade-out"));
+  }
+
+  fadeAndStartGame() {
+    this.fadeOut();
+    setTimeout(() => {
+      this.props.startGame();
+    }, 700);
+
+  }
 
   renderChoices() {
     return this.props.answers.map((choice) => {
       return (
-        <div
+        <p
         key={choice}
+        className="slanty"
         onClick={() => this.props.selectChoice(choice)}>
           {choice}
-        </div>
+        </p>
       )
     });
   }
@@ -22,22 +35,35 @@ class Footer extends Component {
   render() {
     if (this.props.gameState === 1) {
       return (
-        <div onClick={() => this.props.startGame()}>
-          New Game
+        <div
+        className="center slanty fade-in three"
+        onClick={() => this.fadeAndStartGame()}>
+          <h3 className="fade_out">New Game</h3>
         </div>
       )
-    } else if ((this.props.gameState === 2) || (this.props.gameState === 3)) {
+    } else if (this.props.gameState === 2) {
       return (
-        <FormInput currentPlayer={this.props.currentPlayer} />
+        <div className="center">
+          <FormInput
+          currentPlayer={this.props.currentPlayer} />
+        </div>
+      )
+    } else if (this.props.gameState === 3) {
+      return (
+        <div className="center fade_out">
+          <FormInput
+          currentPlayer={this.props.currentPlayer} />
+        </div>
       )
     }
     return (
-      <div>
+      <div className="footer">
         {this.renderChoices()}
       </div>
     );
   }
 }
+
 
 function mapStateToProps(state) {
   return {

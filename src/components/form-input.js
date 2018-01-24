@@ -12,20 +12,29 @@ class FormInput extends Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
 
+  fadeOut() {
+    var elements = Array.from(document.getElementsByClassName("fade_out"));
+    elements.map((element) => element.classList.add("fade-out"));
+  }
+
   onInputChange(event) {
     this.setState({ name: event.target.value });
   }
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.submitName(this.state.name, this.props.currentPlayer);
-    this.setState({ name: '' });
+    this.fadeOut();
+    setTimeout(() => {
+      this.props.submitName(this.state.name, this.props.currentPlayer);
+      this.setState({ name: '' });
+    }, 500);
   }
 
   render() {
     return (
       <form onSubmit={ this.onFormSubmit } >
         <input
+          className="fade-in one"
           value={this.state.name}
           onChange={this.onInputChange}
         />
