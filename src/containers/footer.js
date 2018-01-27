@@ -2,23 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { selectChoice, startGame } from '../actions/index';
-import FormInput from '../components/form-input';
+import FormInput from './form-input';
 
 class Footer extends Component {
   componentDidMount() {
     document.getElementById("start").focus();
   }
 
-  // TODO rename to resetCSS
-  removeFadeOut() {
+  resetCSS() {
     var elements = Array.from(document.getElementsByClassName("fade-out"));
     elements.map((element) => element.classList.remove("fade-out"));
     var elements = Array.from(document.getElementsByClassName("scores"));
     elements.map((element) => element.classList.add("pulse"));
   }
 
-  // TODO rename to applyCSS
-  fadeOut(choice) {
+  applyCSS(choice) {
     var chosen = document.getElementById(choice)
     if (chosen) {
       if (choice === this.props.correctAnswer) {
@@ -41,9 +39,9 @@ class Footer extends Component {
         id={choice}
         className="slanty"
         onClick={() => {
-          this.fadeOut(choice);
+          this.applyCSS(choice);
           setTimeout(() => {
-            this.removeFadeOut();
+            this.resetCSS();
             this.props.selectChoice(choice)
           }, 1300)}}>
           <span className="fade-in two"><span className="fade_out">{choice}</span></span>
@@ -53,7 +51,7 @@ class Footer extends Component {
   }
 
   fadeAndStartGame() {
-    this.fadeOut();
+    this.applyCSS();
     setTimeout(() => {
       this.props.startGame();
     }, 700);
@@ -106,9 +104,8 @@ function mapStateToProps(state) {
   };
 }
 
-// TODO: try ES6 syntax for selectChoice and startGame
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ selectChoice: selectChoice, startGame: startGame }, dispatch)
+  return bindActionCreators({ selectChoice, startGame }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Footer);

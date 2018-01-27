@@ -1,6 +1,8 @@
+import { UPDATE_CORRECT_ANSWER } from '../actions/index';
+
 export default function(state = null, action) {
   switch(action.type) {
-  case 'UPDATE_CORRECT_ANSWER':
+  case UPDATE_CORRECT_ANSWER:
     switch(action.gameState) {
     case 4:
       return (

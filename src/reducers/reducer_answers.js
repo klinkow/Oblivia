@@ -1,6 +1,9 @@
+import { UPDATE_ANSWERS } from '../actions/index';
+
+
 export default function(state = null, action) {
   switch(action.type) {
-  case 'UPDATE_ANSWERS':
+  case UPDATE_ANSWERS:
     switch(action.gameState) {
     case 4:
       return [

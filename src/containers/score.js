@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Score extends Component {
-  componentDidMount() {
-
-  }
-
   renderPlayers() {
     var scores = [this.props.player1Score, this.props.player2Score]
     var counter = -1;

@@ -1,6 +1,8 @@
+import { UPDATE_BANNER } from '../actions/index';
+
 export default function(state = null, action) {
   switch(action.type) {
-  case 'UPDATE_BANNER':
+  case UPDATE_BANNER:
     switch(action.gameState) {
     case 4:
       return (

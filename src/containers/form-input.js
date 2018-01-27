@@ -3,7 +3,6 @@ import { submitName } from '../actions/index';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-// TODO: move this whole file to containers, since it now uses redux
 class FormInput extends Component {
   constructor(props) {
     super(props);
