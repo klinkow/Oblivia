@@ -1,7 +1,6 @@
 export default function(state = null, action) {
   switch(action.type) {
   case 'UPDATE_ANSWERS':
-  console.log("asdflasl", action.gameState)
     switch(action.gameState) {
     case 4:
       return [
@@ -57,7 +56,7 @@ export default function(state = null, action) {
         "8Hilary Clinton",
         "8Mike Pence",
         "8Rob Haywood",
-        "8Dnald Trump"
+        "8Donald Trump"
       ]
     }
   }

@@ -1,4 +1,30 @@
+/*Large Displays:*/
+@media only screen and (min-width: 2000px) {
+  .banner > p {
+    font-size: 10em !important;
+    margin: 0 20% 10vh 20% !important;
+  }
+  .footer > p {
+    font-size: 10em !important;
+    margin: 0 10% 5vh 10% !important;
+  }
+}
+
+
 /*General Stylings:*/
+body {
+  background-color: black;
+  font-family: "Amatic SC";
+  color: white;
+  cursor: default;
+}
+
+body > div {
+  height:100%;
+  width:100%;
+  overflow: hidden;
+}
+
 h1 {
   font-weight: lighter;
   font-size: 12vw;
@@ -11,18 +37,6 @@ h3 {
   font-weight: normal;
   margin: 0;
   padding: 0;
-}
-
-body {
-  background-color: black;
-  font-family: "Amatic SC";
-  color: white;
-}
-
-body > div {
-  height:100%;
-  width:100%;
-  overflow: hidden;
 }
 
 button {
@@ -52,6 +66,15 @@ input:focus {
   width: 1.7vw;
 }
 
+.red {
+  color: red;
+}
+
+.green {
+  color: #3bff00;
+}
+
+
 
 /*Header Stylings:*/
 .header {
@@ -63,7 +86,7 @@ input:focus {
 }
 
 .header > p {
-  font-size: 5vh;
+  font-size: 5.5vh;
 }
 
 .score1 {
@@ -160,7 +183,7 @@ input:focus {
 
 .fade-out {
   opacity: 0;
-  transition: opacity 0.5s linear;
+  transition: opacity 0.8s linear;
 }
 
 .pulse {
@@ -181,24 +204,29 @@ input:focus {
 
 @-webkit-keyframes pulse {
   25% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
   }
   75% {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
   }
 }
 
 @keyframes pulse {
   25% {
-    -webkit-transform: scale(1.1);
-    transform: scale(1.1);
+    -webkit-transform: scale(1.2);
+    transform: scale(1.2);
   }
   75% {
-    -webkit-transform: scale(0.9);
-    transform: scale(0.9);
+    -webkit-transform: scale(0.8);
+    transform: scale(0.8);
   }
+}
+
+.pulse.once {
+  -webkit-animation-iteration-count: 2;
+  animation-iteration-count: 2;
 }
 
 /*! * * * * * * * * * * * * * * * * * * * *\
@@ -213,9 +241,6 @@ input:focus {
 .shake-little {
   display: inline-block;
   transform-origin: center center; }
-
-.shake-little:hover {
-  animation-play-state: paused; }
 
 @keyframes shake-little {
   2% {
@@ -324,39 +349,3 @@ input:focus {
   animation-duration: 100ms;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite; }
-
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
-
-
-/*p {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  background-color: black;
-  color: white;
-  text-decoration: none;
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px transparent;
-  transition-duration: 0.3s;
-  transition-property: transform;
-  transform-origin: 0 100%;
-  margin: 0;
-  font-size: 5vh;
-  text-align: center;
-};*/

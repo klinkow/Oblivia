@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { CSSTransitionGroup } from 'react-transition-group';
 
 class Banner extends Component {
   render() {
@@ -29,28 +28,26 @@ class Banner extends Component {
     } else if (this.props.gameState === 12) {
       if (this.props.currentWinner === 'tie game') {
         return (
-          <div className="banner">
-            <h3>And the winner is.... a tie! Everyone is a winner! Enjoy your prize.</h3>
-            <p>Come back tomorrow and play again!</p>
+          <div className="banner fade-in">
+            <h3>And the winner is.... a tie! Everyone is a winner!</h3>
+            <p>Come back later for new questions</p>
           </div>
         )
       } else {
         return (
-          <div className="banner">
-            <h3>Congratulations {this.props.currentWinner}, you won! Enjoy your prize</h3>
-            <p>Come back tomorrow and play again!</p>
+          <div className="banner fade-in">
+            <h3>Congratulations {this.props.currentWinner}, you won!</h3>
+            <p>Come back later for new questions</p>
           </div>
         )
       }
     }  else {
       return (
         <div className="banner">
-          <CSSTransitionGroup
-            transitionName="example"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
-              {this.props.question}
-          </CSSTransitionGroup>
+          <p
+          key={this.props.question}>
+            <span className="fade-in"><span className="fade_out">{this.props.question}</span></span>
+          </p>
         </div>
       );
     }

@@ -9,15 +9,28 @@ class Footer extends Component {
     document.getElementById("start").focus();
   }
 
-
+  // TODO rename to resetCSS
   removeFadeOut() {
     var elements = Array.from(document.getElementsByClassName("fade-out"));
     elements.map((element) => element.classList.remove("fade-out"));
+    var elements = Array.from(document.getElementsByClassName("scores"));
+    elements.map((element) => element.classList.add("pulse"));
   }
 
-  fadeOut() {
+  // TODO rename to applyCSS
+  fadeOut(choice) {
+    var chosen = document.getElementById(choice)
+    if (chosen) {
+      if (choice === this.props.correctAnswer) {
+        chosen.classList.add("green")
+      } else {
+        chosen.classList.add("red")
+      }
+    }
     var elements = Array.from(document.getElementsByClassName("fade_out"));
     elements.map((element) => element.classList.add("fade-out"));
+    var elements = Array.from(document.getElementsByClassName("scores"));
+    elements.map((element) => element.classList.remove("pulse"));
   }
 
   renderChoices() {
@@ -25,9 +38,10 @@ class Footer extends Component {
       return (
         <p
         key={choice}
+        id={choice}
         className="slanty"
         onClick={() => {
-          this.fadeOut();
+          this.fadeOut(choice);
           setTimeout(() => {
             this.removeFadeOut();
             this.props.selectChoice(choice)
@@ -69,6 +83,10 @@ class Footer extends Component {
           currentPlayer={this.props.currentPlayer} />
         </div>
       )
+    } else if (this.props.gameState === 12) {
+      return (
+        <div className="footer"> </div>
+      )
     }
     return (
       <div className="footer">
@@ -83,7 +101,8 @@ function mapStateToProps(state) {
   return {
     answers: state.answers,
     gameState: state.gameState,
-    currentPlayer: state.currentPlayer
+    currentPlayer: state.currentPlayer,
+    correctAnswer: state.correctAnswer
   };
 }
 

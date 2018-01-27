@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Score extends Component {
+  componentDidMount() {
+
+  }
 
   renderPlayers() {
     var scores = [this.props.player1Score, this.props.player2Score]
@@ -10,18 +13,18 @@ class Score extends Component {
       counter += 1;
       return (
         <p key={counter} className={"score".concat(counter)}>
-          {player}: {scores[counter]}
+          {player}: <span className="scores pulse once">{scores[counter]}</span>
         </p>
       )
     });
   }
 
   render() {
-    if (this.props.players.length < 1) {
+    if (this.props.players.length < 2) {
       return (<div className="header"></div>)
     } else {
     return (
-      <div className="header fade-in fade_out">
+      <div className="header fade-in">
         {this.renderPlayers()}
       </div>
     )

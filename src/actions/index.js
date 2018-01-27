@@ -40,6 +40,10 @@ export function submitName(name, currentPlayer) {
       type: 'UPDATE_ANSWERS',
       gameState: newGameState
     })
+    dispatch({
+      type: 'UPDATE_CORRECT_ANSWER',
+      gameState: newGameState
+    })
     advanceGameState(dispatch);
   }
 }
@@ -52,8 +56,6 @@ export function selectChoice(choice) {
     var currentPlayer = fullGameState.currentPlayer;
     var player1Score = fullGameState.player1Score;
     var player2Score = fullGameState.player2Score;
-
-    console.log('newGameState: ', newGameState);
 
     dispatch({
       type: 'UPDATE_BANNER',
