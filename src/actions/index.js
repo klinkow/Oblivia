@@ -6,7 +6,8 @@ export const UPDATE_GAME_STATE = 'UPDATE_GAME_STATE';
 export const UPDATE_PLAYER1_SCORE = 'UPDATE_PLAYER1_SCORE';
 export const UPDATE_PLAYER2_SCORE = 'UPDATE_PLAYER2_SCORE';
 export const UPDATE_CURRENT_WINNER = 'UPDATE_CURRENT_WINNER';
-// TODO: refactor the rest of the types to constants above
+// TODO: refactor
+
 
 function advanceGameState(dispatch) {
   dispatch({

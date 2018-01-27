@@ -17,11 +17,11 @@ class Score extends Component {
   }
 
   render() {
-    if (this.props.players.length < 2) {
+    if (this.props.players.length < 1) {
       return (<div className="header"></div>)
     } else {
     return (
-      <div className="header">
+      <div className="header fade-in fade_out">
         {this.renderPlayers()}
       </div>
     )

@@ -1,69 +1,65 @@
 export default function(state = null, action) {
   switch(action.type) {
   case 'UPDATE_ANSWERS':
+  console.log("asdflasl", action.gameState)
     switch(action.gameState) {
     case 4:
       return [
         "1Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Donald Trump"
+        "1Mike Pence",
+        "1Rob Haywood",
+        "1Donald Trump"
       ]
     case 5:
       return [
         "2Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Donald Trump"
+        "2Mike Pence",
+        "2Rob Haywood",
+        "2Donald Trump"
       ]
     case 6:
       return [
         "3Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Donald Trump"
+        "3Mike Pence",
+        "3Rob Haywood",
+        "3Donald Trump"
       ]
     case 7:
       return [
         "4Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Donald Trump"
+        "4Mike Pence",
+        "4Rob Haywood",
+        "4Donald Trump"
       ]
     case 8:
       return [
         "5Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Donald Trump"
+        "5Mike Pence",
+        "5Rob Haywood",
+        "5Donald Trump"
       ]
     case 9:
       return [
         "6Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Donald Trump"
+        "6Mike Pence",
+        "6Rob Haywood",
+        "6Donald Trump"
       ]
     case 10:
       return [
         "7Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Donald Trump"
+        "7Mike Pence",
+        "7Rob Haywood",
+        "7Donald Trump"
       ]
     case 11:
       return [
         "8Hilary Clinton",
-        "Mike Pence",
-        "Rob Haywood",
-        "Dnald Trump"
+        "8Mike Pence",
+        "8Rob Haywood",
+        "8Dnald Trump"
       ]
     }
   }
-  return [
-    "Defult Hilary Clinton",
-    "Mike Pence",
-    "Rob Haywood",
-    "Donald Trump"
-  ]
+  return state
 }

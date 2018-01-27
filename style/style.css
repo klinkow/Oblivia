@@ -20,14 +20,9 @@ body {
 }
 
 body > div {
-  border: 1px solid blue;
   height:100%;
   width:100%;
   overflow: hidden;
-}
-
-div {
-  border: 1px solid green;
 }
 
 button {
@@ -126,12 +121,6 @@ input:focus {
 }
 
 
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.5s linear;
-}
-
-
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -167,6 +156,11 @@ input:focus {
   -webkit-animation-delay: 1.2s;
   -moz-animation-delay: 1.2s;
   animation-delay: 1.2s;
+}
+
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s linear;
 }
 
 .pulse {
@@ -331,6 +325,23 @@ input:focus {
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite; }
 
+.example-enter {
+  opacity: 0.01;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.example-leave {
+  opacity: 1;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
 
 
 /*p {

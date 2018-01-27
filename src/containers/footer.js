@@ -5,18 +5,19 @@ import { selectChoice, startGame } from '../actions/index';
 import FormInput from '../components/form-input';
 
 class Footer extends Component {
+  componentDidMount() {
+    document.getElementById("start").focus();
+  }
+
+
+  removeFadeOut() {
+    var elements = Array.from(document.getElementsByClassName("fade-out"));
+    elements.map((element) => element.classList.remove("fade-out"));
+  }
 
   fadeOut() {
     var elements = Array.from(document.getElementsByClassName("fade_out"));
     elements.map((element) => element.classList.add("fade-out"));
-  }
-
-  fadeAndStartGame() {
-    this.fadeOut();
-    setTimeout(() => {
-      this.props.startGame();
-    }, 700);
-
   }
 
   renderChoices() {
@@ -25,17 +26,30 @@ class Footer extends Component {
         <p
         key={choice}
         className="slanty"
-        onClick={() => this.props.selectChoice(choice)}>
-          {choice}
+        onClick={() => {
+          this.fadeOut();
+          setTimeout(() => {
+            this.removeFadeOut();
+            this.props.selectChoice(choice)
+          }, 1300)}}>
+          <span className="fade-in two"><span className="fade_out">{choice}</span></span>
         </p>
       )
     });
+  }
+
+  fadeAndStartGame() {
+    this.fadeOut();
+    setTimeout(() => {
+      this.props.startGame();
+    }, 700);
   }
 
   render() {
     if (this.props.gameState === 1) {
       return (
         <div
+        id="start"
         className="center slanty fade-in three"
         onClick={() => this.fadeAndStartGame()}>
           <h3 className="fade_out">New Game</h3>

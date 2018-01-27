@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { CSSTransitionGroup } from 'react-transition-group';
 
 class Banner extends Component {
   render() {
@@ -44,7 +45,12 @@ class Banner extends Component {
     }  else {
       return (
         <div className="banner">
-          <p>{this.props.question}</p>
+          <CSSTransitionGroup
+            transitionName="example"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}>
+              {this.props.question}
+          </CSSTransitionGroup>
         </div>
       );
     }

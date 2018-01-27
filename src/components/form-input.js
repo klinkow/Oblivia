@@ -37,7 +37,7 @@ class FormInput extends Component {
           className="fade-in one"
           value={this.state.name}
           onChange={this.onInputChange}
-        />
+        autoFocus/>
         <button type="submit">Submit</button>
       </form>
     );
