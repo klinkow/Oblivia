@@ -1,10 +1,7 @@
 import axios from 'axios';
-
 export const ROUND1 = 'ROUND1';
 
 export function nytimes(dispatch) {
-
-
   axios.get('https://api.nytimes.com/svc/mostpopular/v2/mostviewed/U.S./1.json?api-key=').then(response => {
     var articles = response.data["results"]
     // results format: [ [correct answer, blankedHeadline, four multiple choice answers],

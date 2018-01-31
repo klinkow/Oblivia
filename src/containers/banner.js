@@ -35,6 +35,17 @@ class Banner extends Component {
           </div>
         </div>
       );
+    } else if (this.props.gameState === 6 || this.props.gameState === 7) {
+      var questionIndex = (this.props.round2[2] - 6);
+      console.log(questionIndex)
+      return (
+        <div className="banner fade-in" key={this.props.round2[questionIndex][1]}>
+          <div className="fade_out">
+            <p>{this.props.players[this.props.currentPlayer - 1]}, the following headline comes from an open source trivia database.</p>
+            <p>"{this.props.round2[questionIndex][1]}"</p>
+          </div>
+        </div>
+      );
     } else if (this.props.gameState === 12) {
       if (this.props.currentWinner === 'tie game') {
         return (
@@ -61,7 +72,8 @@ function mapStateToProps(state) {
     currentWinner: state.currentWinner,
     currentPlayer: state.currentPlayer,
     players: state.players,
-    round1: state.round1
+    round1: state.round1,
+    round2: state.round2
   };
 }
 

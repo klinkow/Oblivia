@@ -24,6 +24,10 @@ class Footer extends Component {
         correctAnswer = this.props.round1[0][0]
       } else if (this.props.gameState === 5) {
         correctAnswer = this.props.round1[1][0]
+      } else if (this.props.gameState === 6) {
+        correctAnswer = this.props.round2[0][0]
+      } else if (this.props.gameState === 7) {
+        correctAnswer = this.props.round2[1][0]
       }
       if (choice === correctAnswer) {
         chosen.classList.add("green")
@@ -94,6 +98,13 @@ class Footer extends Component {
           {this.renderChoices(this.props.round1[questionIndex][2])}
         </div>
       );
+    } else if (this.props.gameState === 6 || this.props.gameState === 7) {
+      var questionIndex = (this.props.round2[2] - 6);
+      return (
+        <div className="footer" key={this.props.round2[questionIndex][1]}>
+          {this.renderChoices(this.props.round2[questionIndex][2])}
+        </div>
+      );
     } else if (this.props.gameState === 12) {
       return (
         <div className="footer"> </div>
@@ -112,7 +123,8 @@ function mapStateToProps(state) {
   return {
     gameState: state.gameState,
     currentPlayer: state.currentPlayer,
-    round1: state.round1
+    round1: state.round1,
+    round2: state.round2
   };
 }
 
