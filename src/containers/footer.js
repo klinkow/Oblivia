@@ -19,7 +19,13 @@ class Footer extends Component {
   applyCSS(choice) {
     var chosen = document.getElementById(choice)
     if (chosen) {
-      if (choice === this.props.correctAnswer) {
+      var correctAnswer = "";
+      if (this.props.gameState === 4) {
+        correctAnswer = this.props.round1[0][0]
+      } else if (this.props.gameState === 5) {
+        correctAnswer = this.props.round1[1][0]
+      }
+      if (choice === correctAnswer) {
         chosen.classList.add("green")
       } else {
         chosen.classList.add("red")
@@ -31,8 +37,8 @@ class Footer extends Component {
     elements.map((element) => element.classList.remove("pulse"));
   }
 
-  renderChoices() {
-    return this.props.answers.map((choice) => {
+  renderChoices(choices) {
+    return choices.map((choice) => {
       return (
         <p
         key={choice}
@@ -81,6 +87,13 @@ class Footer extends Component {
           currentPlayer={this.props.currentPlayer} />
         </div>
       )
+    } else if (this.props.gameState === 4 || this.props.gameState === 5) {
+      var questionIndex = (this.props.round1[2] - 4);
+      return (
+        <div className="footer" key={this.props.round1[questionIndex][1]}>
+          {this.renderChoices(this.props.round1[questionIndex][2])}
+        </div>
+      );
     } else if (this.props.gameState === 12) {
       return (
         <div className="footer"> </div>
@@ -88,7 +101,7 @@ class Footer extends Component {
     }
     return (
       <div className="footer">
-        {this.renderChoices()}
+        default
       </div>
     );
   }
@@ -97,10 +110,9 @@ class Footer extends Component {
 
 function mapStateToProps(state) {
   return {
-    answers: state.answers,
     gameState: state.gameState,
     currentPlayer: state.currentPlayer,
-    correctAnswer: state.correctAnswer
+    round1: state.round1
   };
 }
 

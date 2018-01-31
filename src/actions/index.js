@@ -1,4 +1,7 @@
-import { fullGameState } from '../index'
+import { fullGameState } from '../index';
+import { nytimes, ROUND1 } from './nytimes';
+
+// import triviadb from './triviadb';
 
 export const UPDATE_CURRENT_PLAYER = 'UPDATE_CURRENT_PLAYER';
 export const UPDATE_NAME = 'UPDATE_NAME';
@@ -6,9 +9,6 @@ export const UPDATE_GAME_STATE = 'UPDATE_GAME_STATE';
 export const UPDATE_PLAYER1_SCORE = 'UPDATE_PLAYER1_SCORE';
 export const UPDATE_PLAYER2_SCORE = 'UPDATE_PLAYER2_SCORE';
 export const UPDATE_CURRENT_WINNER = 'UPDATE_CURRENT_WINNER';
-export const UPDATE_BANNER = 'UPDATE_BANNER';
-export const UPDATE_ANSWERS = 'UPDATE_ANSWERS';
-export const UPDATE_CORRECT_ANSWER = 'UPDATE_CORRECT_ANSWER';
 
 function advanceGameState(dispatch) {
   dispatch({
@@ -18,6 +18,7 @@ function advanceGameState(dispatch) {
 
 export function startGame() {
   return function(dispatch) {
+    nytimes(dispatch);
     advanceGameState(dispatch);
   }
 }
@@ -34,15 +35,7 @@ export function submitName(name, currentPlayer) {
       type: UPDATE_CURRENT_PLAYER
     })
     dispatch({
-      type: UPDATE_BANNER,
-      gameState: newGameState
-    })
-    dispatch({
-      type: UPDATE_ANSWERS,
-      gameState: newGameState
-    })
-    dispatch({
-      type: UPDATE_CORRECT_ANSWER,
+      type: ROUND1,
       gameState: newGameState
     })
     advanceGameState(dispatch);
@@ -51,10 +44,16 @@ export function submitName(name, currentPlayer) {
 
 export function selectChoice(choice) {
   var newGameState = fullGameState.gameState + 1;
-  var correctAnswer = fullGameState.correctAnswer;
   var currentPlayer = fullGameState.currentPlayer;
   var player1Score = fullGameState.player1Score;
   var player2Score = fullGameState.player2Score;
+  var correctAnswer = "";
+
+  if (fullGameState.gameState === 4) {
+    correctAnswer = fullGameState.round1[0][0]
+  } else if (fullGameState.gameState === 5) {
+    correctAnswer = fullGameState.round1[1][0]
+  }
 
   function updateCurrentWinner(dispatch) {
     if (player1Score > player2Score) {
@@ -77,15 +76,7 @@ export function selectChoice(choice) {
 
   return function(dispatch) {
     dispatch({
-      type: UPDATE_BANNER,
-      gameState: newGameState
-    })
-    dispatch({
-      type: UPDATE_ANSWERS,
-      gameState: newGameState
-    })
-    dispatch({
-      type: UPDATE_CORRECT_ANSWER,
+      type: ROUND1,
       gameState: newGameState
     })
     if (choice === correctAnswer) {

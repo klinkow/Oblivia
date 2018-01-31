@@ -25,6 +25,16 @@ class Banner extends Component {
           <h3>Player <span className="width pulse"><span className="fade-in">2</span></span>, enter your name:</h3>
         </div>
       );
+    } else if (this.props.gameState === 4 || this.props.gameState === 5) {
+      var questionIndex = (this.props.round1[2] - 4);
+      return (
+        <div className="banner fade-in" key={this.props.round1[questionIndex][1]}>
+          <div className="fade_out">
+            <p>{this.props.players[this.props.currentPlayer - 1]}, the following headline comes from the most recent New York Times. Fill in the BLANK.</p>
+            <p>"{this.props.round1[questionIndex][1]}"</p>
+          </div>
+        </div>
+      );
     } else if (this.props.gameState === 12) {
       if (this.props.currentWinner === 'tie game') {
         return (
@@ -41,24 +51,17 @@ class Banner extends Component {
           </div>
         )
       }
-    }  else {
-      return (
-        <div className="banner">
-          <p
-          key={this.props.question}>
-            <span className="fade-in"><span className="fade_out">{this.props.question}</span></span>
-          </p>
-        </div>
-      );
     }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    question: state.question,
     gameState: state.gameState,
-    currentWinner: state.currentWinner
+    currentWinner: state.currentWinner,
+    currentPlayer: state.currentPlayer,
+    players: state.players,
+    round1: state.round1
   };
 }
 
