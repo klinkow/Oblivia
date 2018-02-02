@@ -1,10 +1,10 @@
 import axios from 'axios';
 export const ROUND2 = 'ROUND2';
+export const ROUND4 = 'ROUND4';
 
 export function triviaDB(dispatch) {
-  axios.get('https://www.opentdb.com/api.php?amount=2&type=multiple')
+  axios.get('https://www.opentdb.com/api.php?amount=4&type=multiple')
   .then(function (response) {
-    console.log(response["data"]["results"]);
     var rawData = response["data"]["results"]
     var results = []
     rawData.forEach((data, index) => {
@@ -15,17 +15,26 @@ export function triviaDB(dispatch) {
         mixedAnswers.push(answers.slice(randomIndex, (randomIndex + 1)).join());
         answers.splice(randomIndex, 1)
       }
+      function decodeHtml(html) {
+        var txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+      }
       results.push([
         rawData[index]["correct_answer"],
         rawData[index]["question"],
         mixedAnswers
       ])
     })
-    console.log("round 2: ", results);
     dispatch({
       type: ROUND2,
       gameState: 1,
       payload: results
+    })
+    dispatch({
+      type: ROUND4,
+      gameState: 1,
+      payload: results.slice(2,4)
     })
   })
   .catch(function (error) {

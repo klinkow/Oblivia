@@ -105,6 +105,13 @@ class Footer extends Component {
           {this.renderChoices(this.props.round2[questionIndex][2])}
         </div>
       );
+    } else if (this.props.gameState === 10 || this.props.gameState === 11) {
+      var questionIndex = (this.props.round2[2] - 10);
+      return (
+        <div className="footer" key={this.props.round4[questionIndex][1]}>
+          {this.renderChoices(this.props.round4[questionIndex][2])}
+        </div>
+      );
     } else if (this.props.gameState === 12) {
       return (
         <div className="footer"> </div>

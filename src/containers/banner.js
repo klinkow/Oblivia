@@ -37,12 +37,21 @@ class Banner extends Component {
       );
     } else if (this.props.gameState === 6 || this.props.gameState === 7) {
       var questionIndex = (this.props.round2[2] - 6);
-      console.log(questionIndex)
       return (
         <div className="banner fade-in" key={this.props.round2[questionIndex][1]}>
           <div className="fade_out">
             <p>{this.props.players[this.props.currentPlayer - 1]}, the following headline comes from an open source trivia database.</p>
             <p>"{this.props.round2[questionIndex][1]}"</p>
+          </div>
+        </div>
+      );
+    } else if (this.props.gameState === 10 || this.props.gameState === 11) {
+      var questionIndex = (this.props.round2[2] - 10);
+      return (
+        <div className="banner fade-in" key={this.props.round4[questionIndex][1]}>
+          <div className="fade_out">
+            <p>{this.props.players[this.props.currentPlayer - 1]}, the following headline comes from an open source trivia database.</p>
+            <p>"{this.props.round4[questionIndex][1]}"</p>
           </div>
         </div>
       );
