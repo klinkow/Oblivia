@@ -1,15 +1,16 @@
 /*Large Displays:*/
-@media only screen and (min-width: 2000px) {
-  .banner > p {
-    font-size: 10em !important;
-    margin: 0 20% 10vh 20% !important;
-  }
-  .footer > p {
-    font-size: 10em !important;
-    margin: 0 10% 5vh 10% !important;
+@media only screen and (min-width: 1300px) {
+  .banner { margin: 0 10% 10vh 10% !important; }
+  div.banner p { font-size: 80px !important; }
+  .footer { margin: 0 7% 5vh 7% !important; }
+  .footer > p { font-size: 55px !important; }
+  h1 { font-size: 9vw !important; }
+  h3 { font-size: 3vw !important; }
+  input {
+    width: 165px !important;
+    font-size: 45px !important;
   }
 }
-
 
 /*General Stylings:*/
 body {
@@ -73,7 +74,6 @@ input:focus {
 .green {
   color: #3bff00;
 }
-
 
 
 /*Header Stylings:*/
@@ -143,7 +143,6 @@ div.banner p {
   transform: skew(-10deg);
 }
 
-
 @-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
@@ -204,23 +203,23 @@ div.banner p {
 
 @-webkit-keyframes pulse {
   25% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
   75% {
-    -webkit-transform: scale(0.8);
-    transform: scale(0.8);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
   }
 }
 
 @keyframes pulse {
   25% {
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
   }
   75% {
-    -webkit-transform: scale(0.8);
-    transform: scale(0.8);
+    -webkit-transform: scale(0.9);
+    transform: scale(0.9);
   }
 }
 
