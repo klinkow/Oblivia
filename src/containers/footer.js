@@ -28,6 +28,14 @@ class Footer extends Component {
         correctAnswer = this.props.round2[0][0]
       } else if (this.props.gameState === 7) {
         correctAnswer = this.props.round2[1][0]
+      } else if (this.props.gameState === 8) {
+        correctAnswer = this.props.round3[0][0]
+      } else if (this.props.gameState === 9) {
+        correctAnswer = this.props.round3[1][0]
+      } else if (this.props.gameState === 10) {
+        correctAnswer = this.props.round4[0][0]
+      } else if (this.props.gameState === 11) {
+        correctAnswer = this.props.round4[1][0]
       }
       if (choice === correctAnswer) {
         chosen.classList.add("green")
@@ -105,8 +113,15 @@ class Footer extends Component {
           {this.renderChoices(this.props.round2[questionIndex][2])}
         </div>
       );
+    } else if (this.props.gameState === 8 || this.props.gameState === 9) {
+      var questionIndex = (this.props.round3[2] - 8);
+      return (
+        <div className="footer" key={this.props.round3[questionIndex][1]}>
+          {this.renderChoices(this.props.round3[questionIndex][2])}
+        </div>
+      );
     } else if (this.props.gameState === 10 || this.props.gameState === 11) {
-      var questionIndex = (this.props.round2[2] - 10);
+      var questionIndex = (this.props.round4[2] - 10);
       return (
         <div className="footer" key={this.props.round4[questionIndex][1]}>
           {this.renderChoices(this.props.round4[questionIndex][2])}
@@ -131,7 +146,9 @@ function mapStateToProps(state) {
     gameState: state.gameState,
     currentPlayer: state.currentPlayer,
     round1: state.round1,
-    round2: state.round2
+    round2: state.round2,
+    round3: state.round3,
+    round4: state.round4
   };
 }
 

@@ -40,18 +40,25 @@ class Banner extends Component {
       return (
         <div className="banner fade-in" key={this.props.round2[questionIndex][1]}>
           <div className="fade_out">
-            <p>{this.props.players[this.props.currentPlayer - 1]}, the following headline comes from an open source trivia database.</p>
-            <p>"{this.props.round2[questionIndex][1]}"</p>
+            <p>{this.props.players[this.props.currentPlayer - 1]}, {this.props.round2[questionIndex][1]}</p>
+          </div>
+        </div>
+      );
+    } else if (this.props.gameState === 8 || this.props.gameState === 9) {
+      var questionIndex = (this.props.round3[2] - 8);
+      return (
+        <div className="banner fade-in" key={this.props.round3[questionIndex][1]}>
+          <div className="fade_out">
+            <p>{this.props.players[this.props.currentPlayer - 1]}, what is the current temperature in {this.props.round3[questionIndex][1]}?</p>
           </div>
         </div>
       );
     } else if (this.props.gameState === 10 || this.props.gameState === 11) {
-      var questionIndex = (this.props.round2[2] - 10);
+      var questionIndex = (this.props.round4[2] - 10);
       return (
         <div className="banner fade-in" key={this.props.round4[questionIndex][1]}>
           <div className="fade_out">
-            <p>{this.props.players[this.props.currentPlayer - 1]}, the following headline comes from an open source trivia database.</p>
-            <p>"{this.props.round4[questionIndex][1]}"</p>
+            <p>{this.props.players[this.props.currentPlayer - 1]}, {this.props.round4[questionIndex][1]}</p>
           </div>
         </div>
       );
@@ -59,15 +66,15 @@ class Banner extends Component {
       if (this.props.currentWinner === 'tie game') {
         return (
           <div className="banner fade-in">
-            <h3>And the winner is.... a tie! Everyone is a winner!</h3>
-            <p>Come back later for new questions</p>
+            <p>And the winner is.... a tie! Everyone is a winner!</p>
+            <p>Come back tomorrow for new questions</p>
           </div>
         )
       } else {
         return (
           <div className="banner fade-in">
-            <h3>Congratulations {this.props.currentWinner}, you won!</h3>
-            <p>Come back later for new questions</p>
+            <p><span className="pulse">Congratulations {this.props.currentWinner}, you won!</span></p>
+            <p>Come back tomorrow for new questions</p>
           </div>
         )
       }
@@ -82,7 +89,9 @@ function mapStateToProps(state) {
     currentPlayer: state.currentPlayer,
     players: state.players,
     round1: state.round1,
-    round2: state.round2
+    round2: state.round2,
+    round3: state.round3,
+    round4: state.round4
   };
 }
 

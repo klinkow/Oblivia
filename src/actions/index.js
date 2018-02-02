@@ -1,6 +1,7 @@
 import { fullGameState } from '../index';
 import { nytimes, ROUND1 } from './nytimes';
-import { triviaDB, ROUND2 } from './triviadb'
+import { triviaDB, ROUND2, ROUND3, ROUND4 } from './triviadb'
+// import { weather, ROUND3 } from './weather'
 
 export const UPDATE_CURRENT_PLAYER = 'UPDATE_CURRENT_PLAYER';
 export const UPDATE_NAME = 'UPDATE_NAME';
@@ -57,6 +58,14 @@ export function selectChoice(choice) {
     correctAnswer = fullGameState.round2[0][0]
   } else if (fullGameState.gameState === 7) {
     correctAnswer = fullGameState.round2[1][0]
+  } else if (fullGameState.gameState === 8) {
+    correctAnswer = fullGameState.round3[0][0]
+  } else if (fullGameState.gameState === 9) {
+    correctAnswer = fullGameState.round3[1][0]
+  } else if (fullGameState.gameState === 10) {
+    correctAnswer = fullGameState.round4[0][0]
+  } else if (fullGameState.gameState === 11) {
+    correctAnswer = fullGameState.round4[1][0]
   }
 
   function updateCurrentWinner(dispatch) {
@@ -85,6 +94,14 @@ export function selectChoice(choice) {
     })
     dispatch({
       type: ROUND2,
+      gameState: newGameState
+    })
+    dispatch({
+      type: ROUND3,
+      gameState: newGameState
+    })
+    dispatch({
+      type: ROUND4,
       gameState: newGameState
     })
     if (choice === correctAnswer) {
