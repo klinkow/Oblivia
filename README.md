@@ -3,6 +3,7 @@
 ### Description
 
 2-player trivia game that intelligently creates questions using news headlines and other internet sources.
+[https://oblivia-react.herokuapp.com/] (https://oblivia-react.herokuapp.com/)
 
 #### By *Bill Klinkow*
 
@@ -22,6 +23,7 @@ Run the following from the command line:
 ```
 
 Then navigate your browser to http://localhost:8080/
+Api key for new york times not provides. You must provide your own key in src/actions/nytimes.js
 
 ### Support and contact details
 
