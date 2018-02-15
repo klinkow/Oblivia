@@ -3,7 +3,8 @@
 ### Description
 
 2-player trivia game that intelligently creates questions using news headlines and other internet sources.
-https://oblivia-react.herokuapp.com/
+
+Live version at: https://oblivia-react.herokuapp.com/
 
 #### By *Bill Klinkow*
 
