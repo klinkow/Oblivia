@@ -9,7 +9,7 @@ function decodeHtml(html) {
 }
 
 export function triviaDB(dispatch) {
-  axios.get('https://www.opentdb.com/api.php?amount=6&type=multiple')
+  axios.get('https://opentdb.com/api.php?amount=6&type=multiple')
   .then(function (response) {
     var rawData = response["data"]["results"]
     var results = []
