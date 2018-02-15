@@ -24,7 +24,8 @@ Run the following from the command line:
 ```
 
 Then navigate your browser to http://localhost:8080/
-Api key for new york times not provides. You must provide your own key in src/actions/nytimes.js
+
+Api key for new york times not provided (you must provide your own key in src/actions/nytimes.js)
 
 ### Support and contact details
 
