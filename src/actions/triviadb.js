@@ -9,7 +9,7 @@ function decodeHtml(html) {
 }
 
 export function triviaDB(dispatch) {
-  axios.get('https://opentdb.com/api.php?amount=6&type=multiple')
+  axios.get('https://opentdb.com/api.php?amount=4&type=multiple')
   .then(function (response) {
     var rawData = response["data"]["results"]
     var results = []
@@ -31,21 +31,15 @@ export function triviaDB(dispatch) {
     })
     console.log("round 2: ", results.slice(0,2));
     console.log("round 3: ", results.slice(2,4));
-    console.log("round 4: ", results.slice(4,6));
     dispatch({
       type: ROUND2,
       gameState: 1,
       payload: results.slice(0,2)
     })
     dispatch({
-      type: ROUND3,
-      gameState: 1,
-      payload: results.slice(2,4)
-    })
-    dispatch({
       type: ROUND4,
       gameState: 1,
-      payload: results.slice(4,6)
+      payload: results.slice(2,4)
     })
   })
   .catch(function (error) {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-// export const ROUND3 = 'ROUND3';
+export const ROUND3 = 'ROUND3';
 const API_KEY = '5a55afb4cf4abad44ccbc3fb9f994a69';
 const ROOT_URL = `https://api.openweathermap.org/data/2.5/weather?&appid=${API_KEY}`;
 var results = []
@@ -38,7 +38,6 @@ export function weather(dispatch) {
       gameState: 1,
       payload: results
     });
-    console.log("please dispatch")
   }, 1000)
 
 

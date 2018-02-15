@@ -1,7 +1,7 @@
 import { fullGameState } from '../index';
 import { nytimes, ROUND1 } from './nytimes';
-import { triviaDB, ROUND2, ROUND3, ROUND4 } from './triviadb'
-// import { weather, ROUND3 } from './weather'
+import { triviaDB, ROUND2, ROUND4 } from './triviadb'
+import { weather, ROUND3 } from './weather'
 
 export const UPDATE_CURRENT_PLAYER = 'UPDATE_CURRENT_PLAYER';
 export const UPDATE_NAME = 'UPDATE_NAME';
@@ -20,6 +20,7 @@ export function startGame() {
   return function(dispatch) {
     nytimes(dispatch);
     triviaDB(dispatch);
+    weather(dispatch);
     advanceGameState(dispatch);
   }
 }
