@@ -20,7 +20,7 @@ Run the following from the command line:
 > git clone https://github.com/klinkow/Oblivia.git
 > cd Oblivia
 > npm install
-> npm start
+> npm run dev
 ```
 
 Then navigate your browser to http://localhost:8080/
