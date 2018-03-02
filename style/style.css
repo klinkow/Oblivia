@@ -1,5 +1,5 @@
 /*Large Displays:*/
-@media only screen and (min-width: 1300px) {
+@media only screen and (min-width: 2000px) {
   .banner { margin: 0 10% 10vh 10% !important; }
   div.banner p { font-size: 80px !important; }
   .footer { margin: 0 7% 5vh 7% !important; }
@@ -28,13 +28,13 @@ body > div {
 
 h1 {
   font-weight: lighter;
-  font-size: 12vw;
+  font-size: 10vw;
   margin: 0;
   padding: 0;
 }
 
 h3 {
-  font-size: 5vw;
+  font-size: 4vw;
   font-weight: normal;
   margin: 0;
   padding: 0;
@@ -105,7 +105,7 @@ input:focus {
 }
 
 div.banner p {
-  font-size: 6vw;
+  font-size: 4vw;
 }
 
 
@@ -348,3 +348,28 @@ div.banner p {
   animation-duration: 100ms;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite; }
+
+.walk {
+	z-index: -600;
+	cursor: pointer;
+	-webkit-animation: Walk 9s linear;
+	-moz-animation: Walk 9s linear;
+	-ms-animation: Walk 9s linear;
+	-o-animation: Walk 9s linear;
+	animation: Walk 9s linear;
+	bottom: 0%;
+	left: 150%;
+	position: absolute;
+}
+
+@keyframes Walk {
+  0% {
+    left: -50%;
+  }
+  40% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
+}

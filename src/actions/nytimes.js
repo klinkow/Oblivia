@@ -1,83 +1,110 @@
 import axios from 'axios';
 export const ROUND1 = 'ROUND1';
+import { API_KEY } from '../../nytimes_api_key';
+
+// This function takes data from the latest New York Times
+// and creates trivia questions
+
+// The output of this function will have this format:
+// [ [correct answer, question, [four multiple choice answers including correct answer]],
+//   [correct answer, question, [four multiple choice answers including correct answer]],
+//   ...
+// ]
+
+// There are three main sections to this function, explained below...
 
 export function nytimes(dispatch) {
-  axios.get('https://api.nytimes.com/svc/mostpopular/v2/mostviewed/U.S./1.json?api-key=').then(response => {
+  axios.get(`https://api.nytimes.com/svc/mostpopular/v2/mostviewed/U.S./1.json?api-key=${API_KEY}`).then(response => {
     var articles = response.data["results"]
-    // results format: [ [correct answer, blankedHeadline, four multiple choice answers],
-    //                   [correct answer, blankedHeadline, four multiple choice answers],
-    //                   ... ]
-    var results = [];
+    var output = [];
     var lastNames = [];
     var extraLastNames = [];
+
+    // Section 1: gather all of the last names from the articles,
+    // prioritizing them roughly by how suitable they are as dummy answers.
+
+    // For each U.S. news article
     articles.forEach((article) => {
-      if (article['per_facet'] != []) {
-        var headlineWords = article['title'].split(" ").map((word) => {return word.toLowerCase()})
-        var firstPersonFlag = true;
-        article['per_facet'].map((person) => {
-          person = person.split(",")[0].toLowerCase();
-          if (!lastNames.includes(person) && !extraLastNames.includes(person)) {
-            if (firstPersonFlag) {
-              lastNames.push(person)
-              var skipFlag = false;
-              headlineWords.forEach((word) => {
-                if ((person === word) && (results.length < 2) && (skipFlag === false)) {
-                  // If you need to split the headline at the blank:
-                  // blankSpaceIndex = headlineWords.indexOf(word)
-                  // if (blankSpaceIndex != 0) {
-                  //   headlinePart1 = headlineWords.slice(0, (blankSpaceIndex - 1));
-                  // } else {
-                  //   headlinePart1 = "";
-                  // }
-                  // headlinePart2 = headlineWords.slice(blankSpaceIndex);
-                  // ...
-                  headlineWords.splice(headlineWords.indexOf(word), 1, 'BLANK')
-                  results.push([person, headlineWords.join(" ")]);
-                  skipFlag = true;
-                }
-              })
-              firstPersonFlag = false;
+      let peopleOfInterest = article['per_facet']
+      let firstPerson = ""
+      // If the article contains a person of interest
+      if (peopleOfInterest) {
+        // reformat list to lowercase last names
+        peopleOfInterest = peopleOfInterest.map(person => {return person.split(",")[0].toLowerCase()})
+        // Split people into first on the list vs. everyone else
+        firstPerson = peopleOfInterest[0]
+        let otherPeople = peopleOfInterest.slice(1)
+        // If not yet stored, store these two sets of people in separate arrays
+        if (!lastNames.includes(firstPerson)) {
+          lastNames.push(firstPerson);
+        }
+        if (otherPeople != []) {
+          otherPeople.forEach(person => {
+            if (!extraLastNames.includes(person)) {
+              extraLastNames.push(person)
             }
-            extraLastNames.push(person)
+          })
+        }
+
+        // Section 2: Generate a trivia question - a headline with a name replaced by a blank.
+
+        // If you haven't already generated two trivia questions
+        if (output.length < 2) {
+          // Split the headline into words
+          let headlineWords = article['title'].toLowerCase().split(" ")
+          for (let word of headlineWords) {
+            // If the last name is contained in the headline
+            if (firstPerson === word) {
+              // Replace the last name in the headline with 'BLANK'
+              headlineWords.splice(headlineWords.indexOf(word), 1, 'BLANK')
+              // Store the blanked headline and the correct answer
+              output.push([firstPerson, headlineWords.join(" ")]);
+              break;
+            }
           }
-        })
+        }
       }
     })
 
-    var allLastNames = lastNames.concat(extraLastNames)
-    var resultIndex = 0;
-    var allAnswers = [];
-    results.forEach((result) => {
-      var answers = []
-      var counter = 0
-      allLastNames.forEach((lastName) => {
-        if ((lastName != result[0]) && !([].concat.apply([], allAnswers).includes(lastName)) && (counter < 3)) {
-          answers.push(lastName);
-          counter ++;
+    // Section 3: Create an array of four answers for each trivia question.
+
+    // Create a long list of dummy answers
+    let allLastNames = lastNames.concat(extraLastNames)
+    // Start with each question-answer pair you have created
+    output.forEach((result, index) => {
+      // Create an array to store answers (includes correct answer only at this point)
+      let answers = [result[0]]
+      // Until there are four answers...
+      while (answers.length < 4) {
+        if (allLastNames[0] != result[0]) {
+          // add the first of the dummy answers...
+          answers.push(allLastNames[0])
+          // (remove it from list of dummy answers)
+          allLastNames = allLastNames.slice(1)
+          // unless the first of the dummy answers is the correct answers, in which case...
+        } else {
+          // add the next of the dummy answers
+          answers.push(allLastNames[1])
+          // (and remove it from the list)
+          allLastNames.splice(1,1)
         }
-      })
-      answers.push(result[0])
-      allAnswers.push(answers);
-      resultIndex ++;
-    })
-    resultIndex = 0
-    allAnswers.forEach((answers) => {
-      // randomize each set of answers:
-      var mixedAnswers = [];
+      }
+      // Randomize answers (via Bill's compact randomizer)
+      let mixedAnswers = [];
       while (mixedAnswers.length < 4) {
-        var randomIndex = Math.floor((Math.random() * answers.length))
-        mixedAnswers.push(answers.slice(randomIndex, (randomIndex + 1)).join());
+        let randomIndex = Math.floor((Math.random() * answers.length))
+        mixedAnswers.push(answers.slice(randomIndex, (randomIndex + 1)).join())
         answers.splice(randomIndex, 1)
       }
-      results[resultIndex].push(mixedAnswers);
-      resultIndex ++;
+      // push answers to output
+      output[index].push(mixedAnswers)
     })
-
-    console.log("round 1: ", results);
+    console.log("round 1: ", output);
+    // Send data along to reducer
     dispatch({
       type: ROUND1,
       gameState: 1,
-      payload: results
+      payload: output
     })
-  }).catch(error => console.log(error))
+  }).catch(error => console.log(`   _..__.          .__.._\n  .^"-.._ '(\\__/)-' _..-"^.\n        '-.' oo '.-'\n           '-..-'     Bugs!!!\n`, error))
 }

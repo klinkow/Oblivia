@@ -3,7 +3,7 @@ export const ROUND3 = 'ROUND3';
 const API_KEY = '5a55afb4cf4abad44ccbc3fb9f994a69';
 const ROOT_URL = `https://api.openweathermap.org/data/2.5/weather?&appid=${API_KEY}`;
 var results = []
-const cities = ["New York", "Los Angeles", "Chicago", "Houston", "Philadelphia", "Phoenix", "San Antonio", "San Diego", "Dallas", "Austin", "Jacksonville", "Indianapolis", "San Francisco", "Columbus", "Fort Worth", "Charlotte", "Detroit", "Memphis", "Boston", "Seattle", "Denver", "Washington", "Nashville", "Baltimore", "Louisville", "Portland"]
+const cities = ["New York", "Los Angeles", "Chicago", "Houston", "Philadelphia", "Phoenix", "San Antonio", "San Diego", "Dallas", "Austin", "Jacksonville", "Indianapolis", "San Francisco", "Fort Worth", "Charlotte", "Detroit", "Memphis", "Boston", "Seattle", "Denver", "Washington", "Nashville", "Baltimore", "Louisville"]
 var randomIndex1 = Math.floor((Math.random() * cities.length))
 var randomIndex2 = Math.floor((Math.random() * cities.length))
 while (randomIndex2 === randomIndex1) {
@@ -31,14 +31,11 @@ export function weather(dispatch) {
       results.push([temp, name, mixedAnswers.sort()])
     });
   })
-  setTimeout(() => {
-    console.log("round 3: ", results);
-    dispatch({
-      type: ROUND3,
-      gameState: 1,
-      payload: results
-    });
-  }, 1000)
 
-
+  console.log("round 3: ", results);
+  dispatch({
+    type: ROUND3,
+    gameState: 1,
+    payload: results
+  });
 }

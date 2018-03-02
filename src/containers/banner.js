@@ -66,6 +66,7 @@ class Banner extends Component {
       if (this.props.currentWinner === 'tie game') {
         return (
           <div className="banner fade-in">
+            <img className="walk" src="../../../hipster.gif"/>
             <p>And the winner is.... a tie! Everyone is a winner!</p>
             <p>Come back tomorrow for new questions</p>
           </div>
@@ -73,7 +74,8 @@ class Banner extends Component {
       } else {
         return (
           <div className="banner fade-in">
-            <p><span className="pulse">Congratulations {this.props.currentWinner}, you won!</span></p>
+            <img className="walk" src="../../../hipster.gif"/>
+            <p><span className="pulse once">Congratulations {this.props.currentWinner}, you won!</span></p>
             <p>Come back tomorrow for new questions</p>
           </div>
         )

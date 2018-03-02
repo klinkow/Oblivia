@@ -30,7 +30,7 @@ export function triviaDB(dispatch) {
       ])
     })
     console.log("round 2: ", results.slice(0,2));
-    console.log("round 3: ", results.slice(2,4));
+    console.log("round 4: ", results.slice(2,4));
     dispatch({
       type: ROUND2,
       gameState: 1,
